@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.17.6",
+    "knex-cleaner": "^1.1.4",
+    "sqlite3": "^4.0.9"
+  },
+  "name": "Express-Backend-Dwayne-Pearson",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DwayneDevelops/Express-Backend-Dwayne-Pearson.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DwayneDevelops/Express-Backend-Dwayne-Pearson/issues"
+  },
+  "homepage": "https://github.com/DwayneDevelops/Express-Backend-Dwayne-Pearson#readme"
+}
