@@ -2,9 +2,9 @@
 
 ENDPOINTS -
 
-Endpoints for the "companies" component require the name of the company to be submitted in the request.
+Endpoints for the "companies" component require the name of the company to be submitted in the request. When searching for a company by it's ID, all of the departments that fall within that company will show.
 
-Endpoints for the "departments" component require the request to include the name of the department, the company Id the department belongs to and the head of that particular department.
+Endpoints for the "departments" component require the request to include the name of the department, the company ID the department belongs to and the head of that particular department.
 
 Endpoints for the "user" component require a username, password, email and full name be provided. When searching for a user by their ID, the departments for which that particular user is head over are displayed along with the users information.
 

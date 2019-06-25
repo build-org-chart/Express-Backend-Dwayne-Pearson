@@ -3,7 +3,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const configureRoutes = require('../config/routes.js');
-const usersRouter = require('../database/routers/users-router.js/index.js');
+
+const usersRouter = require('../database/routers/users-router.js');
 const departmentsRouter = require('../database/routers/departments-router.js');
 const companiesRouter = require('../database/routers/companies-router.js');
 const requestsRouter = require('../database/routers/requests-router.js');
