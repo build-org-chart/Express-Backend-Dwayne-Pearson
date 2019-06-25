@@ -7,6 +7,7 @@ module.exports = server => {
   server.post('/api/register', register);
   server.post('/api/login', login);
   server.get('/api/jokes', authenticate, getJokes);
+  server.get('/api/chuck', authenticate, getChuck);
 };
 
 function register(req, res) {
@@ -35,7 +36,7 @@ function login(req, res) {
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
-        res.status(200).json({ message: `Welcome to the party ${user.username}, take this token...`, token });
+        res.status(200).json({ message: `Welcome to the party ${user.username}, take this token...`, token, user });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
       }
@@ -55,6 +56,20 @@ function getJokes(req, res) {
     .get('https://icanhazdadjoke.com/search', requestOptions)
     .then(response => {
       res.status(200).json(response.data.results);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Error Fetching Jokes', error: err });
+    });
+}
+function getChuck(req, res) {
+  const requestOptions = {
+    headers: { accept: 'application/json' },
+  };
+
+  axios
+    .get('https://api.chucknorris.io/jokes/random', requestOptions)
+    .then(response => {
+      res.status(200).json(response.data.value);
     })
     .catch(err => {
       res.status(500).json({ message: 'Error Fetching Jokes', error: err });

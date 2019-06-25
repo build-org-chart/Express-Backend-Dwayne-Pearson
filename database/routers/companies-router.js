@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const db = require('../companies/companies-model.js');
+const dbDepartments = require('../departments/departments-model.js');
 
 router.get('/', async (req, res) => {
     const companies = await db.find();
@@ -24,7 +25,9 @@ router.get('/:id', async (req, res) => {
         if (!company) {
             res.status(404).json({ message: "The company with this ID could not be found" })
         } else {
-            res.status(200).json(company);
+            const departments = await dbDepartments.find('departments')
+            .where({ company_id: req.params.id })
+            res.status(200).json({company, departments});
         }
     } catch(error) {
         res.status(500).json({ message: "no no, not today...server error baby"})
