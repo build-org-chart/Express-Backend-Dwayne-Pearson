@@ -38,12 +38,12 @@ exports.up = function(knex, Promise) {
 
       tbl.string("password", 255).notNullable();
 
-      tbl.string("title", 255).notNullable();
+      tbl.string("title", 255);
 
       tbl
         .integer("company_id")
         .references("id")
-        .inTable("departments")
+        .inTable("companies")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
 
