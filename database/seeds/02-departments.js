@@ -3,9 +3,9 @@ exports.seed = function(knex, Promise) {
   return knex('departments').del()
     .then(function () {
       return knex('departments').insert([
-        {department_head: 'rowValue1', manager: 1},
-        {department_head: 'rowValue2', manager: 2},
-        {department_head: 'rowValue3', manager: 3}
+        {name: 'Sporting goods', company_id: 1, department_head: 1},
+        {name: 'Electronics', company_id: 1, department_head: 2},
+        {name: 'Jewelry', company_id: 1, department_head: 3}
       ]);
     });
 };

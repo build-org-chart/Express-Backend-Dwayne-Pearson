@@ -1,39 +1,38 @@
 const db = require('../dbConfig');
 
 module.exports = {
-    add,
     find,
     findBy,
     findById,
+    add,
     update,
     remove
-}
-
-async function add(user) {
-    const [id] = await db('users')
-    .insert(user);
-
-    return findById(id);
-}
+};
 
 function find() {
-    return db('users')
-    .select('*');
+    return db('departments');
 }
 
 function findBy(filter) {
-    return db('users')
+    return db('departments')
     .where(filter);
 }
 
 function findById(id) {
-    return db('users')
-    .where({ id })
-    .first();
+    return db('departments')
+        .where({ id })
+        .first();
+}
+
+async function add(department) {
+    const [id] = await db('departments')
+    .insert(department);
+
+    return findById(id);
 }
 
 function update(id, changes) {
-    return db('users')
+    return db('departments')
         .where({ id })
         .update(changes)
         .then(count => {
@@ -46,7 +45,7 @@ function update(id, changes) {
 }
 
 function remove(id) {
-    return db('users')
+    return db('departments')
         .where({ id })
         .del();
 }

@@ -9,31 +9,31 @@ module.exports = {
     remove
 }
 
-async function add(user) {
-    const [id] = await db('users')
-    .insert(user);
+async function add(request) {
+    const [id] = await db('requests')
+    .insert(request);
 
     return findById(id);
 }
 
 function find() {
-    return db('users')
+    return db('requests')
     .select('*');
 }
 
 function findBy(filter) {
-    return db('users')
+    return db('requests')
     .where(filter);
 }
 
 function findById(id) {
-    return db('users')
+    return db('requests')
     .where({ id })
     .first();
 }
 
 function update(id, changes) {
-    return db('users')
+    return db('requests')
         .where({ id })
         .update(changes)
         .then(count => {
@@ -46,7 +46,7 @@ function update(id, changes) {
 }
 
 function remove(id) {
-    return db('users')
+    return db('requests')
         .where({ id })
         .del();
 }
