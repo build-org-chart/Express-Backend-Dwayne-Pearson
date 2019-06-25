@@ -51,26 +51,24 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     const changes = req.body;
-  
+
     if (changes.id) {
-      try {
-        const updated = await db.update(req.params.id, changes);
-        if (updated) {
-          res.status(200).json(updated);
-        } else {
-          res.status(404).json({
-            message: 'That user does not exist',
-          });
+        try {
+            const updated = await db.update(req.params.id, changes);
+            if (updated) {
+                res.status(200).json(updated);
+            } else {
+                res.status(404).json({
+                    message: 'That user does not exist',
+                });
+            }
+        } catch (error) {
+            res.status(500).json({ message: 'We ran into an error updating this user' });
         }
-      } catch (error) {
-        res
-          .status(500)
-          .json({ message: 'We ran into an error updating this user' });
-      }
     } else {
-      res.status(400).json({
-        message: 'Please provide the Id of the user you want to update',
-      });
+        res.status(400).json({
+            message: 'Please provide the Id of the user you want to update',
+        });
     }
 });
 

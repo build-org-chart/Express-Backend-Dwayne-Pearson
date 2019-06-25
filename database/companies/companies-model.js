@@ -1,38 +1,39 @@
 const db = require('../dbConfig');
 
 module.exports = {
+    add,
     find,
     findBy,
     findById,
-    add,
     update,
     remove
-};
-
-function find() {
-    return db('departments');
 }
 
-function findBy(filter) {
-    return db('departments')
-    .where(filter);
-}
-
-function findById(id) {
-    return db('departments')
-        .where({ id })
-        .first();
-}
-
-async function add(department) {
-    const [id] = await db('departments')
-    .insert(department);
+async function add(company) {
+    const [id] = await db('companies')
+    .insert(company);
 
     return findById(id);
 }
 
+function find() {
+    return db('companies')
+    .select('*');
+}
+
+function findBy(filter) {
+    return db('companies')
+    .where(filter);
+}
+
+function findById(id) {
+    return db('companies')
+    .where({ id })
+    .first();
+}
+
 function update(id, changes) {
-    return db('departments')
+    return db('companies')
         .where({ id })
         .update(changes)
         .then(count => {
@@ -45,7 +46,7 @@ function update(id, changes) {
 }
 
 function remove(id) {
-    return db('departments')
+    return db('companies')
         .where({ id })
         .del();
 }
