@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ message: "The user with this ID could not be found" })
         } else {
             const departments = await dbDepartments.find('departments')
-            .where({ id })
+            .where({ department_head: req.params.id })
             res.status(200).json({user, departments});
         }
     } catch(error) {
