@@ -3,19 +3,23 @@ exports.up = function(knex, Promise) {
     return knex.schema.createTable('departments', tbl => {
         tbl
         .increments();
-  
+
         tbl
-        .string('department_head')
-        .unique()
+        .string('name', 255)
         .notNullable();
-  
+
         tbl
-        .string('manager', 255)
+        .integer('company_id')
         .unsigned()
+        .notNullable()
         .references('id')
-        .inTable('managers')
+        .inTable('companies')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+  
+        tbl
+        .integer('department_head')
+        .notNullable();
     });
   };
   
