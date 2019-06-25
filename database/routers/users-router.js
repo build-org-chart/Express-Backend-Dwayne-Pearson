@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const db = require('../users/users-model.js');
 const dbDepartments = require('../departments/departments-model.js');
+const dbRequests = require('../requests/requests-model.js');
 
 router.get('/', async (req, res) => {
     const users = await db.find();
@@ -33,6 +34,23 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: "no no, not today...server error baby"})
     }
 });
+
+router.get('/:id/requests', async (req, res) => {
+    const { id } = await req.params;
+    const user = await db.findById(id);
+
+    try {
+        if (!user) {
+            res.status(404).json({ message: "The user with this ID could not be found" })
+        } else {
+            const requests = await dbRequests.find('requests')
+            .where({ sender_id: req.params.id })
+            res.status(200).json({user, requests});
+        }
+    } catch(error) {
+        res.status(500).json({ message: "no no, not today...server error baby"})
+    }
+})
 
 router.post('/', async (req, res) => {
     const user = await db.add(req.body);
