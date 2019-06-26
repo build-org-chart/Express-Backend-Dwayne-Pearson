@@ -7,15 +7,16 @@ describe('Companies Model', () => {
         it('should get all the companies', async () => {
             const companies = await find();
 
-            expect(companies.length).toBe(7);
+            expect(companies.length).toBe(3);
             expect(companies[0].name).toBe('Company1');
-            expect(companies[4]).toBeTruthy();
+            expect(companies[2]).toBeTruthy();
+            expect(companies[2].id).toBe(3)
         });
     });
 
-    describe('INSERT/', () => {
+    describe('POST/', () => {
         it('should insert a new company', async () => {
-            // await add({ name: 'Barnes' });
+            // await add({ name: 'Walgreens' });
              //<-- adds a new company
 
             const companies = await find();

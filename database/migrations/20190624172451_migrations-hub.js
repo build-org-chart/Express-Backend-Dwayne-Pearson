@@ -89,7 +89,11 @@ exports.up = function(knex, Promise) {
     })
 
     .createTable('requests', tbl => {
-      tbl.integer('sender_id')
+      tbl
+      .increments();
+
+      tbl
+      .integer('sender_id')
       .notNullable()
       .unsigned()
       .references('id')
