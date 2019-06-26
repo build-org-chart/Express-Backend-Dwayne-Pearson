@@ -3,6 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const configureRoutes = require('../config/routes.js');
+const { authenticate } = require('../auth/authenticate');
 
 const usersRouter = require('../database/routers/users-router.js');
 const departmentsRouter = require('../database/routers/departments-router.js');
@@ -17,10 +18,10 @@ server.use(cors());
 
 configureRoutes(server);
 
-server.use('/api/users', usersRouter);
-server.use('/api/departments', departmentsRouter);
-server.use('/api/companies', companiesRouter);
-server.use('/api/requests', requestsRouter);
+server.use('/api/users', authenticate, usersRouter);
+server.use('/api/departments', authenticate, departmentsRouter);
+server.use('/api/companies', authenticate, companiesRouter);
+server.use('/api/requests', authenticate, requestsRouter);
 
 server.get('/', (req, res) => {
     res.status(200).json({ api: 'Hello World!'});
