@@ -126,7 +126,3 @@ exports.up = function(knex, Promise) {
     .dropTableIfExists('users')
     .dropTableIfExists('requests');
   };
-
-
-
-//truncate
